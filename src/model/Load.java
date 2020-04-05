@@ -2,68 +2,52 @@ package model;
 
 public class Load {
 
-    private final static String DANGEROUS="390000"
-
-    private final static String PERISHABLE="250000"
-
-    private final static String NOTPERISHABLE="80000"
+    public final static String[] TYPELOAD = { "DANGEROUS", "PERECEDERO", "NO PERECEDERO" };
 
     private String typeLoad;
 
-    private double weight;
-    
+    private double weightByLoad;
+
     private int numBoxes;
-    
 
-    public Load() {
+    private Client owner;
 
-        this.typeLoad=typeLoad;
-
-        this.weight=weight;
-
-        this.numBoxes=numBoxes;
-
-       
-
+    public Load(String typeLoad, double weightByLoad, int numBoxes, Client owner) {
+        this.typeLoad = typeLoad;
+        this.weightByLoad = weightByLoad;
+        this.numBoxes = numBoxes;
     }
 
-    public void settypeLoad(String typeLoad) {
-
-        this.typeLoad=typeLoad;
-
-    }
-
-    public String gettypeLoad() {
-
+    public String getTypeLoad() {
         return typeLoad;
-
     }
 
-    public void setweight(double weight) {
-
-        this.weight=weight;
-
+    public void setTypeLoad(String typeLoad) {
+        this.typeLoad = typeLoad;
     }
 
-    public double getweight() {
-
-        return weight;
-
+    public double getWeightByLoad() {
+        return weightByLoad;
     }
 
-    public void numBoxes(int numBoxes) {
-
-        this.numBoxes=numBoxes;
-
+    public void setWeightByLoad(double weightByLoad) {
+        this.weightByLoad = weightByLoad;
     }
 
-    public int numBoxes() {
-
+    public int getNumBoxes() {
         return numBoxes;
-
     }
 
+    public void setNumBoxes(int numBoxes) {
+        this.numBoxes = numBoxes;
+    }
 
+    public Client getOwner() {
+        return owner;
+    }
 
+    public void setOwner(Client owner) {
+        this.owner = owner;
+    }
 
 }

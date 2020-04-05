@@ -1,98 +1,81 @@
 package model;
+import java.util.ArrayList;
 
 public class Ship {
 
-    private final static double MAXIMUMLOAD=2800;
-
-    private String name;
+    private final static double MAXVALUE = 2800;
 
     private String captain;
 
-    private boolean setSail;
+    private Client[] clients;
 
-    private int numLoad;
+    private ArrayList<Load> myLoads;
 
-    private Client client1;
-    private Client client2;
-    private Client client3;
-    private Client client4;
-    private Client client5;
+    private double totalWeight;
 
-    public Ship(String captain, boolean setSail, int numLoad) {
+    public Ship() {
 
-        name = "pirate ";
+        captain = "Barba Negra";
 
-        this.captain= captain;
+        totalWeight = 0;
 
-        this.setSail=setSail;
-
-        this.numLoad=numLoad;
-
-        client1 = new Client();
-        client2 = new Client();
-        client3 = new Client();
-        client4 = new Client();
-        client5 = new Client();
-
-       
+        myLoads = new ArrayList<Load>();
 
     }
 
-    public void setNombre(String nombre) {
+    public String recibirCarga(Load newLoad) {
 
-        this.name = name;
+        String msg = "";
+
+        if (totalWeight < MAXVALUE) {
+
+            myLoads.add(newLoad);
+
+            msg = "Se puede cargar";
+
+        } else {
+
+            msg = "No se pudo cargar";
+        }
+
+        return msg;
 
     }
 
-    public String getNombre() {
+    
 
-        return name;
-
+    public String getCaptain() {
+        return captain;
     }
 
     public void setCaptain(String captain) {
-
         this.captain = captain;
-
     }
 
-    public String getCaptai() {
-
-        return captain;
-
+    public Client[] getClients() {
+        return clients;
     }
 
-     public void setSetSail(boolean setSail) {
-
-        this.setSail = setSail;
-
-        if (getWeight()==12000 && getNumLoad()){
-
-            setSail=true;
-
-            System.out.println("el barco puede sarpar");
-
-
-        }else { setSail=false;
-        
-        }
-
+    public void setClients(Client[] clients) {
+        this.clients = clients;
     }
 
-     public void setNumLoad(int numLoad) {
-
-        this.numLoad = numLoad;
-
-
+    public ArrayList<Load> getMyLoads() {
+        return myLoads;
     }
 
-    public int getNumLoad() {
-
-        return numLoad;
-
-
+    public void setMyLoads(ArrayList<Load> myLoads) {
+        this.myLoads = myLoads;
     }
 
+    public double getTotalWeight() {
+        return totalWeight;
+    }
 
+    public void setTotalWeight(double totalWeight) {
+        this.totalWeight = totalWeight;
+    }
+
+    
 
 }
