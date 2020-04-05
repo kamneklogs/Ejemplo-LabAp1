@@ -41,11 +41,27 @@ public class Pirate {
                 case 1:
                     System.out.println("Escoja el cliente:");
 
-                    Client owner;
-
-                    for (int i = 0; i < clients.length; i++) {
-                        
+                    for (int i = 0; i < elPirata.getClients().length; i++) {
+                        System.out.println((i + 1) + " " + elPirata.getClients()[i].getName());
                     }
+                    Client owner = elPirata.getClients()[r.nextInt() - 1];
+
+                    System.out.println("Escoja el tipo de carga");
+                    for (int i = 0; i < Client.TYPESCLIENT.length; i++) {
+                        System.out.println((i + 1) + " " + Client.TYPESCLIENT[i]);
+                    }
+                    String typeLoad = Client.TYPESCLIENT[r.nextInt() - 1];
+
+                    System.out.println("Ingrese el peso de cada caja");
+                    double weightByLoad = r.nextDouble();
+
+                    System.out.println("Ingrese el numero de cajas");
+                    int numBoxes = r.nextInt();
+
+                    Load newLoad = new Load(typeLoad, weightByLoad, numBoxes, owner);
+
+                    System.out.println(elPirata.addLoad(newLoad));
+
 
                     break;
 

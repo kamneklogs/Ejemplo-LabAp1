@@ -1,4 +1,5 @@
 package model;
+
 import java.util.ArrayList;
 
 public class Ship {
@@ -23,15 +24,15 @@ public class Ship {
 
     }
 
-    public String recibirCarga(Load newLoad) {
+    public String addLoad(Load newLoad) {
 
         String msg = "";
 
         if (totalWeight < MAXVALUE) {
 
-            myLoads.add(newLoad);
+            msg = "Se puede cargar y su valor incluyendo un posible descuento es: $" + costOfLoad(newLoad);
 
-            msg = "Se puede cargar";
+            myLoads.add(newLoad);
 
         } else {
 
@@ -42,7 +43,34 @@ public class Ship {
 
     }
 
-    
+    public double costOfLoad(Load newLoad) {
+        double cost = 0;
+        double totalWeightOfBoxes = newLoad.getWeightByLoad() * newLoad.getNumBoxes();
+
+        if (newLoad.getTypeLoad().equals(Load.TYPELOAD[0])) {
+            cost = totalWeightOfBoxes * 390000;
+        } else if (newLoad.getTypeLoad().equals(Load.TYPELOAD[1])) {
+            cost = totalWeightOfBoxes * 250000;
+        } else {
+            cost = totalWeightOfBoxes * 80000;
+        }
+
+        if (newLoad.getOwner().getTypeClient().equals(Client.TYPESCLIENT[1])
+                && newLoad.getTypeLoad().equals(Load.TYPELOAD[1])) {
+            cost = cost - (cost * 0.015);
+        }
+
+        if (newLoad.getOwner().getTypeClient().equals(Client.TYPESCLIENT[2])
+                && (newLoad.getTypeLoad().equals(Load.TYPELOAD[1]) || newLoad.getTypeLoad().equals(Load.TYPELOAD[2]))) {
+            cost = cost - (cost * 0.03);
+        }
+
+        if (newLoad.getOwner().getTypeClient().equals(Client.TYPESCLIENT[3])) {
+            cost = cost - (cost * 0.05);
+        }
+
+        return cost;
+    }
 
     public String getCaptain() {
         return captain;
@@ -75,7 +103,5 @@ public class Ship {
     public void setTotalWeight(double totalWeight) {
         this.totalWeight = totalWeight;
     }
-
-    
 
 }
