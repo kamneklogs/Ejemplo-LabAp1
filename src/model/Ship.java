@@ -116,6 +116,30 @@ public class Ship {
 
     }
 
+    public String emptyShip() {
+
+        myLoads.clear();
+        totalWeight = 0;
+
+        return "Barco descargado";
+    }
+
+    public String canSail() {
+        String result = "No puede zarpar aun.";
+
+        System.out.println(myLoads.size());
+        if (myLoads.size() > 2) {
+            result = "Si se puede zarpar";
+        }
+
+        System.out.println(totalWeight);
+        if (totalWeight > 12000) {
+            result = "Si se puede zarpar";
+        }
+
+        return result;
+    }
+
     public double costOfLoad(Load newLoad) {
         double cost = 0;
         double totalWeightOfBoxes = newLoad.getWeightByLoad() * newLoad.getNumBoxes();
@@ -143,6 +167,30 @@ public class Ship {
         }
 
         return cost;
+    }
+
+    public String upgradeClient(int numClient) {
+        String result = "No se puede actualizar este cliente porque no cumple las condiciones ";
+
+        if (clients[numClient - 1].getTypeClient().equals("Normal")) {
+            if (clients[numClient - 1].getWeightAccum() >= 35000) {
+                result = "Este cliente subio de categoria a Plata";
+            }
+        }
+
+        if (clients[numClient - 1].getTypeClient().equals("Plata")) {
+            if (clients[numClient - 1].getWeightAccum() >= 55000 || clients[numClient - 1].getMoneyAccum() >= 2000000) {
+                result = "Este cliente subio de categoria a Oro";
+            }
+        }
+
+        if (clients[numClient - 1].getTypeClient().equals("Oro")) {
+            if (clients[numClient - 1].getMoneyAccum() >= 5000000) {
+                result = "Este cliente subio de categoria a Platinum";
+            }
+        }
+
+        return result;
     }
 
     public String getCaptain() {

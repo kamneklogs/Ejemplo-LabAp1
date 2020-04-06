@@ -16,6 +16,8 @@ public class Load {
         this.typeLoad = typeLoad;
         this.weightByLoad = weightByLoad;
         this.numBoxes = numBoxes;
+
+        this.owner = owner;
     }
 
     public String getTypeLoad() {
