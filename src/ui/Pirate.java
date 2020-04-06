@@ -52,8 +52,8 @@ public class Pirate {
                     }
                     String typeLoad = Load.TYPELOAD[r.nextInt() - 1];
 
-                    System.out.println("Ingrese el peso de cada caja");
-                    double weightByLoad = r.nextDouble();
+                    System.out.println("Ingrese el peso de cada caja en gramos");
+                    double weightByLoad = (r.nextDouble() * 0.001);
 
                     System.out.println("Ingrese el numero de cajas");
                     int numBoxes = r.nextInt();
@@ -89,8 +89,6 @@ public class Pirate {
 
                 case 6:
                     System.out.println("Cerrando el programa");
-
-                   
 
                     break;
 
