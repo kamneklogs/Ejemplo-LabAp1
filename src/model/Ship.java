@@ -28,15 +28,88 @@ public class Ship {
 
         String msg = "";
 
+        boolean perecedera = false;
+        boolean peligrosa = false;
+
+        for (int i = 0; i < myLoads.size(); i++) {
+
+            if (myLoads.get(i).getTypeLoad().equals("PERECEDERA")) {
+                perecedera = true;
+            }
+
+            if (myLoads.get(i).getTypeLoad().equals("PELIGROSA")) {
+                peligrosa = true;
+            }
+
+        }
+
         if (totalWeight < MAXVALUE) {
 
-            msg = "Se puede cargar y su valor incluyendo un posible descuento es: $" + costOfLoad(newLoad);
+            if (perecedera && newLoad.getTypeLoad().equals("PELIGROSA")) {
 
-            myLoads.add(newLoad);
+                for (int i = 0; i < myLoads.size(); i++) {
+                    if (myLoads.get(i).getOwner().getName().equals(newLoad.getOwner().getName())) {
+                        myLoads.remove(i);
+                    }
+                }
+
+                msg = "No se pudo cargar por que no cumple las condiciones.";
+
+            } else {
+
+                msg = "Se puede cargar y su valor incluyendo un posible descuento es: $" + costOfLoad(newLoad);
+
+                myLoads.add(newLoad);
+
+                totalWeight += newLoad.getWeightByLoad() * newLoad.getNumBoxes();
+
+                for (int i = 0; i < clients.length; i++) {
+                    if (newLoad.getOwner().getName().equals(clients[i].getName())) {
+                        clients[i].setWeightAccum(
+                                clients[i].getWeightAccum() + (newLoad.getNumBoxes() * newLoad.getWeightByLoad()));
+                        clients[i].setMoneyAccum(clients[i].getMoneyAccum() + (costOfLoad(newLoad)));
+                    }
+                }
+
+            }
+
+            if (peligrosa && newLoad.getTypeLoad().equals("PERECEDERA")) {
+
+                for (int i = 0; i < myLoads.size(); i++) {
+                    if (myLoads.get(i).getOwner().getName().equals(newLoad.getOwner().getName())) {
+                        myLoads.remove(i);
+                    }
+                }
+
+                msg = "No se pudo cargar por que no cumple las condiciones.";
+
+            } else {
+
+                msg = "Se puede cargar y su valor incluyendo un posible descuento es: $" + costOfLoad(newLoad);
+
+                myLoads.add(newLoad);
+
+                totalWeight += newLoad.getWeightByLoad() * newLoad.getNumBoxes();
+
+                for (int i = 0; i < clients.length; i++) {
+                    if (newLoad.getOwner().getName().equals(clients[i].getName())) {
+                        clients[i].setWeightAccum(
+                                clients[i].getWeightAccum() + (newLoad.getNumBoxes() * newLoad.getWeightByLoad()));
+                        clients[i].setMoneyAccum(clients[i].getMoneyAccum() + (costOfLoad(newLoad)));
+                    }
+                }
+
+            }
 
         } else {
 
-            msg = "No se pudo cargar";
+            for (int i = 0; i < myLoads.size(); i++) {
+                if (myLoads.get(i).getOwner().getName().equals(newLoad.getOwner().getName())) {
+                    myLoads.remove(i);
+                }
+            }
+
+            msg = "No se pudo cargar porque excede el peso permitido.";
         }
 
         return msg;

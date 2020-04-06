@@ -33,7 +33,7 @@ public class Pirate {
 
         do {
             System.out.println(
-                    "Escoja la opcion que desee:\n\n(1) Cargar el barco\n(2) (2) Descargar el barco para iniciar un nuevo viaje\n(3) Mostrar peso total de la carga que transporta el barco\n(4) Verificar si se puede zarpar\n");
+                    "Escoja la opcion que desee:\n\n(1) Cargar el barco\n(2) Descargar el barco para iniciar un nuevo viaje\n(3) Mostrar peso total de la carga que transporta el barco\n(4) Verificar si se puede zarpar\n(5) Salir\n");
 
             opt = r.nextInt();
 
@@ -69,7 +69,9 @@ public class Pirate {
                     break;
             }
 
-        } while (opt != 10);
+        } while (opt != 5);
+
+        r.close();
 
     }
 }
