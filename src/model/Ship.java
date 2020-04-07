@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Ship {
 
-    private final static double MAXVALUE = 2800;
+    private final static double MAXVALUE = 28000;
 
     private String captain;
 
@@ -170,23 +170,23 @@ public class Ship {
     }
 
     public String upgradeClient(int numClient) {
-        String result = "No se puede actualizar este cliente porque no cumple las condiciones ";
+        String result = "";
 
         if (clients[numClient - 1].getTypeClient().equals("Normal")) {
             if (clients[numClient - 1].getWeightAccum() >= 35000) {
-                result = "Este cliente subio de categoria a Plata";
+                result = "Felicidades!!! Este cliente subio de categoria a Plata";
             }
         }
 
         if (clients[numClient - 1].getTypeClient().equals("Plata")) {
             if (clients[numClient - 1].getWeightAccum() >= 55000 || clients[numClient - 1].getMoneyAccum() >= 2000000) {
-                result = "Este cliente subio de categoria a Oro";
+                result = "Felicidades!!! Este cliente subio de categoria a Oro";
             }
         }
 
         if (clients[numClient - 1].getTypeClient().equals("Oro")) {
             if (clients[numClient - 1].getMoneyAccum() >= 5000000) {
-                result = "Este cliente subio de categoria a Platinum";
+                result = "Felicidades!!! Este cliente subio de categoria a Platinum";
             }
         }
 

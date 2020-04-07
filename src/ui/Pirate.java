@@ -33,7 +33,7 @@ public class Pirate {
 
         do {
             System.out.println(
-                    "Escoja la opcion que desee:\n\n(1) Cargar el barco\n(2) Descargar el barco para iniciar un nuevo viaje\n(3) Mostrar peso total de la carga que transporta el barco\n(4) Verificar si se puede zarpar\n(5) Actualizar plan de un cliente\n(6) Salir");
+                    "Escoja la opcion que desee:\n\n(1) Cargar el barco\n(2) Descargar el barco para iniciar un nuevo viaje\n(3) Mostrar peso total de la carga que transporta el barco\n(4) Verificar si se puede zarpar\n(5) Salir");
 
             opt = r.nextInt();
 
@@ -44,7 +44,9 @@ public class Pirate {
                     for (int i = 0; i < elPirata.getClients().length; i++) {
                         System.out.println((i + 1) + " " + elPirata.getClients()[i].getName());
                     }
-                    Client owner = elPirata.getClients()[r.nextInt() - 1];
+
+                    int numClient = r.nextInt();
+                    Client owner = elPirata.getClients()[numClient - 1];
 
                     System.out.println("Escoja el tipo de carga");
                     for (int i = 0; i < Load.TYPELOAD.length; i++) {
@@ -62,6 +64,8 @@ public class Pirate {
 
                     System.out.println(elPirata.addLoad(newLoad));
 
+                    System.out.println(elPirata.upgradeClient(numClient));
+
                     break;
 
                 case 2:
@@ -78,16 +82,6 @@ public class Pirate {
                     break;
 
                 case 5:
-                    System.out.println("Elija el cliente que quiere actualizar:");
-
-                    for (int i = 0; i < elPirata.getClients().length; i++) {
-                        System.out.println((i + 1) + " " + elPirata.getClients()[i].getName());
-                    }
-
-                    System.out.println(elPirata.upgradeClient(r.nextInt()));
-                    break;
-
-                case 6:
                     System.out.println("Cerrando el programa");
 
                     break;
@@ -97,7 +91,7 @@ public class Pirate {
                     break;
             }
 
-        } while (opt != 6);
+        } while (opt != 5);
 
         r.close();
 
